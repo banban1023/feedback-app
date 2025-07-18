@@ -4,16 +4,21 @@
       <img src="@/assets/suggestions/icon-suggestions.svg" alt="" class="sort_img">
       <p class="sort_msg">6 Suggestions</p>
     </section>
-    <van-dropdown-menu ref="menu">
-      <van-dropdown-item v-model="value" :options="option">
-        <!-- 自定义 title slot，让 Sort by 也可以点击 -->
-        <template v-slot:title>
-          <span class="dropdown-title" @click="toggleDropdown">
+    <van-dropdown-menu :overlay="false">
+      <van-dropdown-item
+        ref="dropdown"
+        v-model="value"
+        :options="option"
+        title-class="custom-title"
+      >
+        <template #title>
+          <span class="dropdown-title" @click.stop="toggleDropdown">
             <span>Sort by:</span> {{ getTextByValue(value) }}
           </span>
         </template>
       </van-dropdown-item>
     </van-dropdown-menu>
+    <button class="sort_btn">+ Add Feedback</button>
   </div>
 </template>
 
@@ -38,7 +43,10 @@ export default {
     },
     // 手动打开下拉菜单
     toggleDropdown () {
-      this.$refs.menu.toggle()
+      const dropdown = this.$refs.dropdown
+      if (dropdown) {
+        dropdown.toggle()
+      }
     }
   }
 }
@@ -51,8 +59,9 @@ export default {
   background-color: @grey-bgi;
   padding: 0 24px;
   align-items: center;
+  justify-content: space-between;
   .sort_suggestions {
-    display: flex;
+    display: none;
     margin-right: 38px;
     .sort_img {
       margin-right: 16px;
@@ -76,6 +85,20 @@ export default {
       }
     }
   }
+  ::v-deep(.van-popup--top) {
+    width: 225px;
+    height: 192px;
+    top: 20px;
+    left: 24px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    .van-dropdown-item__option--active {
+      color: #AD1FEA;
+      .van-dropdown-item__icon {
+        color: #AD1FEA;
+      }
+    }
+  }
   .dropdown-title {
     font-size: 14px;
     font-weight: 700;
@@ -83,6 +106,16 @@ export default {
     span {
       font-weight: 300;
     }
+  }
+  .sort_btn {
+    width: 134px;
+    height: 40px;
+    border-radius: 10px;
+    background: #AD1FEA;
+    border: none;
+    font-size: 13px;
+    font-weight: bold;
+    color: @grey-bgc-q;
   }
 }
 </style>
