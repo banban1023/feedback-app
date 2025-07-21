@@ -6,7 +6,7 @@
     </header>
     <main>
       <SortBy></SortBy>
-      <section v-if="suggessList.length > 0">
+      <section v-if="!suggessList.length > 0">
         <SuggesstionBox
           v-for="item in suggessList"
           :key="item.id"
@@ -104,7 +104,30 @@ export default {
 @media (min-width: 768px) {
   .home {
     main {
-      padding: 24px 40px 113px 39px;
+      padding: 24px 40px 54px 39px;
+      .suggest_null {
+        height: calc(100vh - 424px);
+        margin: 0;
+        .null_img {
+          width: 130px;
+          height: 137px;
+          margin-bottom: 53px;
+        }
+        .null_title {
+          font-size: 24px;
+          margin-bottom: 16px;
+        }
+        .null_msg {
+          font-size: 16px;
+          width: 410px;
+          margin-bottom: 48px;
+        }
+        .null_btn {
+          width: 158px;
+          height: 44px;
+          font-size: 14px;
+        }
+      }
     }
   }
 }
@@ -130,6 +153,14 @@ export default {
       }
       .suggesstion_box {
         margin-bottom: 20px;
+      }
+      .suggest_null {
+        height: calc(100vh - 319px);
+        margin: 0;
+        .null_img {
+          width: 140px;
+          height: 140px;
+        }
       }
     }
   }
