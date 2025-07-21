@@ -5,6 +5,7 @@
       <SortBy></SortBy>
     </header>
     <main>
+      <SortBy></SortBy>
       <section v-if="suggessList.length > 0">
         <SuggesstionBox
           v-for="item in suggessList"
@@ -53,6 +54,9 @@ export default {
   background-color: @blue-bgc;
   min-height: 100vh;
   main {
+    .sort {
+      display: none;
+    }
     padding: 32px 24px 39px;
     .suggesstion_box {
       margin-bottom: 16px;
@@ -92,6 +96,40 @@ export default {
         font-size: 13px;
         font-weight: bold;
         color: @grey-bgc-q;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .home {
+    main {
+      padding: 24px 40px 113px 39px;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .home {
+    display: flex;
+    justify-content: space-between;
+    padding: 94px 165px 129px;
+    header {
+      margin-right: 30px;
+      .sort {
+        display: none;
+      }
+    }
+    main {
+      padding: 0;
+      min-width: 825px;
+      width: 100%;
+      .sort {
+        display: flex;
+        margin-bottom: 24px;
+      }
+      .suggesstion_box {
+        margin-bottom: 20px;
       }
     }
   }

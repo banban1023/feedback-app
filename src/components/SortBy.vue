@@ -118,4 +118,24 @@ export default {
     color: @grey-bgc-q;
   }
 }
+
+@media (min-width: 768px) {
+  .sort {
+    height: 72px;
+    margin: 0 40px;
+    border-radius: 5px;
+    .sort_suggestions {
+      display: flex;
+    }
+    ::v-deep(.van-dropdown-menu) {
+      flex: 1;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .sort {
+    margin: 0;
+  }
+}
 </style>
