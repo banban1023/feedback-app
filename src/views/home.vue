@@ -6,11 +6,12 @@
     </header>
     <main>
       <SortBy></SortBy>
-      <section v-if="!suggessList.length > 0">
+      <section v-if="suggessList">
         <SuggesstionBox
           v-for="item in suggessList"
           :key="item.id"
           :item="item"
+          @click="goToDetail(item)"
         ></SuggesstionBox>
       </section>
       <section class="suggest_null" v-else>
@@ -28,8 +29,8 @@
 </template>
 
 <script>
+// import data from '@/db/data.json'
 import PrimaryNav from '@/components/PrimaryNav.vue'
-import Data from '@/db/data.json'
 import SortBy from '@/components/SortBy.vue'
 import SuggesstionBox from '@/components/SuggesstionBox.vue'
 export default {
@@ -37,14 +38,20 @@ export default {
   components: {
     PrimaryNav, SortBy, SuggesstionBox
   },
-  data () {
-    return {
-      suggessList: null
+  methods: {
+    goToDetail (item) {
+      this.$store.commit('suggdata/setCurrentItem', item)
+      this.$router.push(`/detail/${item.id}`)
     }
   },
   created () {
-    this.suggessList = Data.productRequests
-    console.log(this.suggessList)
+    this.$store.dispatch('suggdata/loadSuggData')
+    // console.log(data)
+  },
+  computed: {
+    suggessList () {
+      return this.$store.getters['suggdata/getSuggData']
+    }
   }
 }
 </script>

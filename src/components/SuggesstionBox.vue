@@ -1,5 +1,5 @@
 <template>
-  <div class="suggesstion_box">
+  <div class="suggesstion_box" @click="$emit('click')">
     <section class="sug_left">
       <article>
         <h3 class="sug_title">{{item.title}}</h3>
