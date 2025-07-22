@@ -13,19 +13,23 @@
         </label>
         <label for="select">Category
           <p class="form_submittitle">Choose a category for your feedback</p>
-          <select id="select" class="form_select">
-            <option value="">Feature</option>
-            <option value="option1">选项1</option>
-            <option value="option2">选项2</option>
-            <option value="option3">选项3</option>
-          </select>
+          <el-select id="select" v-model="value">
+          <el-option
+            v-for="item in tags"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
         </label>
         <label for="detail">Feedback Detail
           <p class="form_submittitle">Include any specific comments on what should be improved, added, etc.</p>
           <textarea name="detail" id="detail" rows="5"></textarea>
         </label>
-        <button type="submit" class="form_add">Add Feedback</button>
-        <button class="form_cancel">Cancel</button>
+        <section class="form_btn">
+          <button type="submit" class="form_add">Add Feedback</button>
+          <button class="form_cancel">Cancel</button>
+        </section>
       </form>
     </main>
   </div>
@@ -37,6 +41,32 @@ export default {
   name: 'NameView',
   components: {
     GoBack
+  },
+  data () {
+    return {
+      tags: [
+        {
+          value: 'Feature',
+          label: 'Feature'
+        },
+        {
+          value: 'UI',
+          label: 'UI'
+        },
+        {
+          value: 'UX',
+          label: 'UX'
+        },
+        {
+          value: 'Enhancement',
+          label: 'Enhancement'
+        },
+        {
+          value: 'Bug',
+          label: 'Bug'
+        }],
+      value: 'Feature'
+    }
   }
 }
 </script>
@@ -82,6 +112,7 @@ export default {
           font-weight: normal;
           color: @gery-font-q;
           margin-top: 3px;
+          margin-bottom: 16px;
         }
         .form_name {
           width: 100%;
@@ -90,6 +121,114 @@ export default {
           background-color: @blue-bgc;
           border: none;
         }
+        ::v-deep(.el-input) {
+          display: block;
+          .el-input__inner {
+            height: 48px;
+            border-radius: 5px;
+            background: @blue-bgc;
+            border: none;
+            font-weight: normal;
+            padding-left: 16px;
+            color: @grey-btn;
+            &::placeholder {
+              color: @grey-btn;
+            }
+          }
+        }
+        textarea {
+          resize: none;
+          width: 100%;
+          height: 120px;
+          border-radius: 5px;
+          background: @blue-bgc;
+          border: none;
+        }
+      }
+      .form_add {
+        width: 100%;
+        height: 40px;
+        border-radius: 10px;
+        background: @purple-btn;
+        font-size: 13px;
+        font-weight: bold;
+        color: @grey-bgc-q;
+        border: none;
+        margin-top: 40px;
+      }
+      .form_cancel {
+        width: 100%;
+        height: 40px;
+        border-radius: 10px;
+        background: @grey-btn;
+        font-size: 13px;
+        font-weight: bold;
+        color: @grey-bgc-q;
+        border: none;
+        margin-top: 16px;
+      }
+    }
+  }
+}
+@media (min-width: 768px) {
+  .new {
+    header {
+      height: 114px;
+      padding: 0 114px;
+    }
+    main {
+      padding: 20px 114px 0;
+      .new_icon {
+        left: 156px;
+      }
+      .new_form {
+        padding: 52px 42px 40px;
+        .form_title {
+          font-size: 24px;
+        }
+        label {
+          font-size: 14px;
+          .form_submittitle {
+            font-size: 14px;
+          }
+          textarea {
+            height: 96px;
+          }
+        }
+        .form_btn {
+          margin-top: 30px;
+          display: flex;
+          flex-direction: row-reverse;
+          .form_add, .form_cancel {
+            margin-top: 0;
+          }
+          .form_add {
+            width: 144px;
+            height: 44px;
+            margin-left: 16px;
+          }
+          .form_cancel {
+            width: 93px;
+            height: 44px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .new {
+    header {
+      height: 180px;
+      padding: 0 450px;
+    }
+    main {
+      padding: 28px 450px 0;
+      .new_icon {
+        left: 492px;
+        width: 56px;
+        height: 56px;
       }
     }
   }

@@ -107,6 +107,7 @@ export default {
       padding: 24px 40px 54px 39px;
       .suggest_null {
         height: calc(100vh - 424px);
+        min-height: 400px;
         margin: 0;
         .null_img {
           width: 130px;
@@ -156,6 +157,7 @@ export default {
       }
       .suggest_null {
         height: calc(100vh - 319px);
+        min-height: 500px;
         margin: 0;
         .null_img {
           width: 140px;
