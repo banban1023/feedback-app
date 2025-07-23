@@ -24,20 +24,33 @@
             <p class="comment_msg">{{item.content}}</p>
             <ul class="comment_replies" v-if="item.replies">
               <li
-                v-if="commentReplies"
+                v-for="reply in item.replies"
+                :key="reply.id"
+                class="reply_li"
               >
                 <section class="comment_user">
-                <img class="comment_avatar" :src="resolveImage(item.user.image)" alt="">
+                <img class="comment_avatar" :src="resolveImage(reply.user.image)" alt="">
                 <div class="info">
-                  <p class="comment_name">{{item.user.name}}</p>
-                  <p class="comment_username">@{{item.user.username}}</p>
+                  <p class="comment_name">{{reply.user.name}}</p>
+                  <p class="comment_username">@{{reply.user.username}}</p>
                 </div>
                 <button class="reply_btn">Reply</button>
               </section>
+              <p class="comment_msg"><!-- @{{***}} -->{{reply.content}}</p>
               </li>
             </ul>
           </li>
         </ul>
+      </section>
+      <section class="add_comment">
+        <h3 class="add_title">
+          Add Comment
+        </h3>
+        <textarea name="" id="" cols="30" rows="10" placeholder="Type your comment here"></textarea>
+        <div class="btn_count">
+          <span>250 Characters left</span>
+          <button class="add_btn">Post Comment</button>
+        </div>
       </section>
     </main>
   </div>
@@ -57,9 +70,6 @@ export default {
     },
     cuttentComment () {
       return this.currentItem?.comments || []
-    },
-    commentReplies () {
-      return this.cuttentComment?.replues || []
     }
   },
   created () {

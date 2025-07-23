@@ -70,8 +70,123 @@
             color: @gery-font-q;
             margin-top: 16px;
           }
+          .comment_replies {
+            .reply_li {
+              padding-right: 0;
+            }
+          }
         }
       }
+    }
+    .add_comment {
+      background-color: #fff;
+      border-radius: 10px;
+      margin-top: 24px;
+      padding: 24px;
+      .add_title {
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: -0.25px;
+        color: @grey-btn;
+      }
+      textarea {
+        width: 100%;
+        height: 80px;
+        border-radius: 5px;
+        background: @blue-bgc;
+        border: none;
+        resize: none;
+        margin-top: 24px;
+        padding: 16px;
+        &::placeholder {
+          font-size: 13px;
+          color: #8C92B3;
+        }
+      }
+      .btn_count {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 16px;
+        align-items: center;
+        span {
+          font-size: 13px;
+          color: @gery-font-q;
+        }
+        .add_btn {
+          width: 119px;
+          height: 40px;
+          border-radius: 10px;
+          background: @purple-btn;
+          font-size: 13px;
+          font-weight: bold;
+          color: @grey-bgc-q;
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .detail {
+    header {
+      height: 124px;
+      padding: 0 40px;
+      .detail_btn {
+        width: 142px;
+        height: 44px; 
+      }
+    }
+    main {
+      padding: 0 40px 120px;
+      .detail_comments {
+        .comments_sug {
+          li {
+            .comment_user {
+              .info {
+                padding-left: 32px;
+                .comment_name {
+                  font-size: 14px;
+                }
+                .comment_username {
+                  font-size: 14px;
+                }
+              }
+            }
+            .comment_msg {
+              padding-left: 72px;
+              font-size: 15px;
+            }
+          }
+        }
+      }
+      .add_comment {
+        .btn_count {
+          span {
+            font-size: 15px;
+          }
+          .add_btn {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .detail {
+    padding-top: 80px;
+    header {
+      height: 68px;
+      align-items: start;
+      padding: 0 355px;
+      .goback {
+        margin-top: 12px;
+      }
+    }
+    main {
+      padding: 0 355px;
     }
   }
 }
