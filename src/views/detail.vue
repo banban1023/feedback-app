@@ -2,7 +2,7 @@
   <div class="detail">
     <header>
       <GoBack></GoBack>
-      <button class="detail_btn">Edit Feedback</button>
+      <button class="detail_btn" @click="$router.push('/edit')">Edit Feedback</button>
     </header>
     <main>
       <SuggesstionBox v-if="currentItem" :item="currentItem"></SuggesstionBox>

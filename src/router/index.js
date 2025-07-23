@@ -23,6 +23,11 @@ const routes = [
     path: '/roadmap',
     name: 'readmap',
     component: () => import('@/views/roadmap.vue')
+  },
+  {
+    path: '/edit',
+    name: 'edit',
+    component: () => import('@/views/edit.vue')
   }
 ]
 
