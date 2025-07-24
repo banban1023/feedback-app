@@ -29,7 +29,7 @@
 </template>
 
 <script>
-// import data from '@/db/data.json'
+import data from '@/db/data.json'
 import PrimaryNav from '@/components/PrimaryNav.vue'
 import SortBy from '@/components/SortBy.vue'
 import SuggesstionBox from '@/components/SuggesstionBox.vue'
@@ -46,7 +46,7 @@ export default {
   },
   created () {
     this.$store.dispatch('suggdata/loadSuggData')
-    // console.log(data)
+    console.log(data)
   },
   computed: {
     suggessList () {

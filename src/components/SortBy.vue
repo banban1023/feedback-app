@@ -130,12 +130,18 @@ export default {
     ::v-deep(.van-dropdown-menu) {
       flex: 1;
     }
+    ::v-deep(.van-popup--top) {
+      left: 257px;
+    }
   }
 }
 
 @media (min-width: 1440px) {
   .sort {
     margin: 0;
+    ::v-deep(.van-popup--top) {
+      left: 670px;
+    }
   }
 }
 </style>

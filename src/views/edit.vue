@@ -273,8 +273,10 @@ export default {
 
 @media (min-width: 1440px) {
   .edit {
+    padding-top: 80px;
     header {
-      height: 180px;
+      height: 68px;
+      align-items: start;
       padding: 0 450px;
     }
     main {

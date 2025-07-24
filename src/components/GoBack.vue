@@ -1,7 +1,7 @@
 <template>
   <div class="goback" @click="$router.back()">
     <span class="goback_icon"></span>
-    Go Back
+    <p>Go Back</p>
   </div>
 </template>
 
@@ -16,6 +16,17 @@ export default {
   font-size: 13px;
   font-weight: bold;
   color: #647196;
+  display: flex;
+  align-items: center;
+  p {
+    border-bottom: 1px solid transparent;
+  }
+  &:hover {
+    cursor: pointer;
+    p {
+      border-bottom: 1px solid #fff;
+    }
+  }
   .goback_icon {
     width: 4px;
     height: 8px;

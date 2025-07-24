@@ -13,9 +13,9 @@
         </label>
         <label for="select">Category
           <p class="form_submittitle">Choose a category for your feedback</p>
-          <el-select id="select" v-model="stateValue">
+          <el-select id="select" v-model="value">
           <el-option
-            v-for="item in state"
+            v-for="item in tags"
             :key="item.value"
             :label="item.label"
             :value="item.value">
@@ -65,25 +65,7 @@ export default {
           value: 'Bug',
           label: 'Bug'
         }],
-      value: 'Feature',
-      state: [
-        {
-          value: 'Suggestion',
-          label: 'Suggestion'
-        },
-        {
-          value: 'Planned',
-          label: 'Planned'
-        },
-        {
-          value: 'In-Progress',
-          label: 'In-Progress'
-        },
-        {
-          value: 'Live',
-          label: 'Live'
-        }],
-      stateValue: 'Suggestion'
+      value: 'Feature'
     }
   }
 }
@@ -237,8 +219,10 @@ export default {
 
 @media (min-width: 1440px) {
   .new {
+    padding-top: 80px;
     header {
-      height: 180px;
+      height: 68px;
+      align-items: start;
       padding: 0 450px;
     }
     main {
