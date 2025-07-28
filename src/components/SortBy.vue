@@ -18,7 +18,7 @@
         </template>
       </van-dropdown-item>
     </van-dropdown-menu>
-    <button class="sort_btn">+ Add Feedback</button>
+    <button class="sort_btn" @click="$router.push('/new')">+ Add Feedback</button>
   </div>
 </template>
 

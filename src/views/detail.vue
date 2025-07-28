@@ -6,7 +6,7 @@
     </header>
     <main>
       <SuggesstionBox v-if="currentItem" :item="currentItem"></SuggesstionBox>
-      <section class="detail_comments">
+      <section class="detail_comments" v-if="cuttentComment.length !== 0">
         <h3 class="detail_title">{{cuttentComment.length}} Comments</h3>
         <ul class="comments_sug">
           <li
@@ -46,10 +46,15 @@
         <h3 class="add_title">
           Add Comment
         </h3>
-        <textarea name="" id="" cols="30" rows="10" placeholder="Type your comment here"></textarea>
+        <textarea
+          cols="30"
+          rows="10"
+          placeholder="Type your comment here"
+          v-model="commentContent"
+        ></textarea>
         <div class="btn_count">
-          <span>250 Characters left</span>
-          <button class="add_btn">Post Comment</button>
+          <span>{{charactersLeft}} Characters left</span>
+          <button class="add_btn" @click="postComment" :disabled="!commentContent.trim()">Post Comment</button>
         </div>
       </section>
     </main>
@@ -57,6 +62,7 @@
 </template>
 
 <script>
+import { Toast } from 'vant'
 import GoBack from '@/components/GoBack.vue'
 import SuggesstionBox from '@/components/SuggesstionBox.vue'
 export default {
@@ -64,17 +70,24 @@ export default {
   components: {
     GoBack, SuggesstionBox
   },
+  data () {
+    return {
+      commentContent: ''
+    }
+  },
   computed: {
     currentItem () {
       return this.$store.getters['suggdata/getCurrentItem']
     },
     cuttentComment () {
       return this.currentItem?.comments || []
+    },
+    charactersLeft () {
+      return 250 - (this.commentContent?.length || 0)
     }
   },
   created () {
     if (!this.currentItem) {
-      // 这里可以做兜底，比如返回首页或者重新拉数据
       this.$router.replace('/') // 防止直接访问页面时为空
     }
     console.log(this.currentItem)
@@ -84,6 +97,21 @@ export default {
       // 去掉路径中的 ./assets 前缀
       const imageName = imagePath.replace('./assets/user-images/', '')
       return require(`@/assets/user-images/${imageName}`)
+    },
+    async postComment () {
+      if (!this.commentContent.trim()) return
+      try {
+        await this.$store.dispatch('suggdata/addComment', {
+          feedbackId: this.currentItem.id,
+          content: this.commentContent.trim()
+        })
+        // 清空评论框
+        this.commentContent = ''
+        // 成功提示
+        Toast.success('Comment posted successfully!')
+      } catch (error) {
+        console.error('Failed to post comment:', error)
+      }
     }
   }
 }

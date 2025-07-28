@@ -22,7 +22,7 @@
         <p class="null_msg">
           Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.
         </p>
-        <button class="null_btn">+ Add Feedback</button>
+        <button class="null_btn" @click="$router.push('/new')">+ Add Feedback</button>
       </section>
     </main>
   </div>
@@ -42,6 +42,9 @@ export default {
     goToDetail (item) {
       this.$store.commit('suggdata/setCurrentItem', item)
       this.$router.push(`/detail/${item.id}`)
+    },
+    addFeedbook () {
+      console.log(111)
     }
   },
   created () {

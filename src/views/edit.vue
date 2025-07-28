@@ -9,11 +9,11 @@
         <h2 class="form_title">Editing ‘Add a dark theme option’</h2>
         <label for="name">Feedback Title
           <p class="form_submittitle">Add a short, descriptive headline</p>
-          <input class="form_name" type="text" id="name" name="name">
+          <input class="form_name" type="text" id="name" name="name" v-model="formData.name">
         </label>
         <label for="select">Category
           <p class="form_submittitle">Choose a category for your feedback</p>
-          <el-select id="select" v-model="value">
+          <el-select id="select" v-model="formData.category">
           <el-option
             v-for="item in tags"
             :key="item.value"
@@ -24,7 +24,7 @@
         </label>
         <label for="update">Update Status
           <p class="form_submittitle">Change feature state</p>
-          <el-select id="update" v-model="stateValue">
+          <el-select id="update" v-model="formData.status">
           <el-option
             v-for="item in state"
             :key="item.value"
@@ -35,7 +35,7 @@
         </label>
         <label for="detail">Feedback Detail
           <p class="form_submittitle">Include any specific comments on what should be improved, added, etc.</p>
-          <textarea name="detail" id="detail" rows="5"></textarea>
+          <textarea name="detail" id="detail" rows="5" v-model="formData.detail"></textarea>
         </label>
         <section class="form_btn">
           <div class="btn_right">
@@ -79,7 +79,6 @@ export default {
           value: 'Bug',
           label: 'Bug'
         }],
-      value: 'Feature',
       state: [
         {
           value: 'Suggestion',
@@ -97,7 +96,12 @@ export default {
           value: 'Live',
           label: 'Live'
         }],
-      stateValue: 'Suggestion'
+      formData: {
+        name: '',
+        category: 'Feature',
+        status: 'Suggestion',
+        detail: ''
+      }
     }
   }
 }

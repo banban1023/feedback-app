@@ -5,15 +5,15 @@
     </header>
     <main>
       <img src="@/assets/shared/icon-new-feedback.svg" alt="" class="new_icon">
-      <form class="new_form" action="">
+      <form class="new_form" @submit.prevent="submitForm">
         <h2 class="form_title">Create New Feedback</h2>
         <label for="name">Feedback Title
           <p class="form_submittitle">Add a short, descriptive headline</p>
-          <input class="form_name" type="text" id="name" name="name">
+          <input class="form_name" type="text" id="name" name="name" v-model="formData.title">
         </label>
         <label for="select">Category
           <p class="form_submittitle">Choose a category for your feedback</p>
-          <el-select id="select" v-model="value">
+          <el-select id="select" v-model="formData.category">
           <el-option
             v-for="item in tags"
             :key="item.value"
@@ -24,7 +24,7 @@
         </label>
         <label for="detail">Feedback Detail
           <p class="form_submittitle">Include any specific comments on what should be improved, added, etc.</p>
-          <textarea name="detail" id="detail" rows="5"></textarea>
+          <textarea name="detail" id="detail" rows="5" v-model="formData.detail"></textarea>
         </label>
         <section class="form_btn">
           <button type="submit" class="form_add">Add Feedback</button>
@@ -65,7 +65,31 @@ export default {
           value: 'Bug',
           label: 'Bug'
         }],
-      value: 'Feature'
+      value: 'Feature',
+      formData: {
+        title: '',
+        category: 'Feature',
+        detail: ''
+      }
+    }
+  },
+  methods: {
+    submitForm () {
+      const newFeedback = {
+        id: Date.now(), // 简单生成唯一 ID
+        title: this.formData.title,
+        category: this.formData.category,
+        upvotes: 0,
+        status: 'suggestion', // 默认状态
+        description: this.formData.detail,
+        comments: []
+      }
+
+      // 提交给 Vuex
+      this.$store.commit('suggdata/addSuggestion', newFeedback)
+
+      // 跳转回首页
+      this.$router.push('/')
     }
   }
 }
